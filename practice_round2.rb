@@ -54,18 +54,19 @@ class String
   # end
 
   def trapp(array, i)
+    #i should be the first bracket reached
     trapped = []
     j = i + 1
+    p array
     until array[j] == "]"
-      if array[i] == "["
-        if array[j] == "["
-          trapp(array, j)
-        else
-          trapped << array[j]
-        end
-        j += 1
+      if array[j] == "["
+        trapp(array, j)
+      else
+        trapped << array[j]
       end
+      j += 1
     end
+    p "trapped" 
     p trapped
     return trapped
   end
@@ -91,4 +92,4 @@ end
 
 # string2 = String.new.decompress("3[abc]4[a3[de]b]c")
 
-string2 = String.new.trapp([4, "[", "a", "b", "]", "c"], 1)
+string2 = String.new.trapp([4, "[", "a", 3, "[", "d", "e", "]", "b", "]", "c"], 0)
